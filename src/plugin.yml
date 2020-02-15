@@ -1,0 +1,32 @@
+name: MenuMaker
+version: 0.0.3
+author: Traquolix
+main: fr.traquolix.menumaker.Main
+api-version: 1.15
+description: Menu maker & Item editor for dummies
+
+commands:
+
+# Support Essentials Formatting : https://wiki.ess3.net/mc/
+  lore:
+    usage: /lore <Line> to input lines. /lore to reset lore.
+    description: Put lore to item held in hand.
+
+# Support Essentials Formatting : https://wiki.ess3.net/mc/
+  rename:
+    usage: /rename <NameOfTheItem>. /rename to reset the item's name.
+    description: Set a Name to the item.
+
+# Support Essentials Formatting : https://wiki.ess3.net/mc/
+  linkto:
+    usage: /linkto <NameOfTheMenu>
+    description: Link to another menu when clicked.
+
+# Support Essentials Formatting : https://wiki.ess3.net/mc/
+  makemenu:
+    usage: /makemenu. /makemenu construct <newName> to confirm
+    description: Fill your menu as you please.
+
+  consultant:
+    usage: /consultant
+    description: Get list of all builded menus.

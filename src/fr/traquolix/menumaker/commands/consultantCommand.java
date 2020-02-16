@@ -36,6 +36,7 @@ public class consultantCommand implements CommandExecutor {
 
         // Taper le nom d'un menu amène directement à la consultation du menu en question
         // TODO
+
         if (args.length != 0) {
             player.sendMessage("Incorrect usage");
         }

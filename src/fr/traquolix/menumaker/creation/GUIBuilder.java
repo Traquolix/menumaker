@@ -70,13 +70,13 @@ public class GUIBuilder implements Listener {
     }
 
     // Getters
-    private InventorySize getSize() {
+    public InventorySize getSize() {
         return this.size;
     }
     public String getName() {
         return this.name;
     }
-    private InventoryHolder getOwner(){
+    public InventoryHolder getOwner(){
         return this.owner;
     }
     public int getID(){
@@ -87,6 +87,10 @@ public class GUIBuilder implements Listener {
     }
     public Inventory getInv() {
         return this.inv;
+    }
+
+    public ItemStack[] getContent() {
+        return this.getInv().getContents();
     }
 
     /**
@@ -230,7 +234,7 @@ public class GUIBuilder implements Listener {
      * @param content           An array that you fill like the inventory.
      * @return                  Return the inventory filled.
      */
-/*
+
     public static Inventory fillInventory(Inventory inv, ItemStack[] content) {
 
 
@@ -239,6 +243,6 @@ public class GUIBuilder implements Listener {
         }
         return inv;
     }
-*/
+
 }
 

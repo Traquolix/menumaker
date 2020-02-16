@@ -8,16 +8,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import fr.traquolix.menumaker.creation.GUIBuilder;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 
 public class MakeMenuCommand implements CommandExecutor {
     private Main plugin;
+    private int iterator = DefinitiveGUI.getSize();
 
     public MakeMenuCommand(Main plugin) {
         this.plugin = plugin;
-
         plugin.getCommand("makemenu").setExecutor(this);
     }
 
@@ -31,6 +30,7 @@ public class MakeMenuCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         String title = " ";
+
 
         if (args.length >= 2) {
             if (args[0].equalsIgnoreCase("build")) {
@@ -57,8 +57,10 @@ public class MakeMenuCommand implements CommandExecutor {
                     }
 
                 }
+
                 new DefinitiveGUI(); // Copy the content of the GUIBuilder HashMap in the DefinitiveGUI Hashmap and erase it.
                 GUIBuilder.reset();
+                iterator++;
 
             } else {
                 player.sendMessage("Unknown function");
@@ -165,7 +167,7 @@ public class MakeMenuCommand implements CommandExecutor {
             }
         } else { // Will put other usage for commands of makemenu if I make new ones
             if (!(args[0].equalsIgnoreCase("build"))) {
-                player.sendMessage("Incorrect usage");
+                player.sendMessage("Incorrect usage or impossible size");
             } else {
                 player.sendMessage("Missing arguments");
             }

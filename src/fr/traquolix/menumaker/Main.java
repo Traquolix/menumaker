@@ -1,8 +1,7 @@
 package fr.traquolix.menumaker;
 
 import fr.traquolix.menumaker.commands.*;
-import org.bukkit.Bukkit;
-import org.bukkit.inventory.Inventory;
+import fr.traquolix.menumaker.usagePluginLoad.DefinitiveGUI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -13,6 +12,7 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
 
         // Commodities
+        DefinitiveGUI.initPluginDefinitiveGUI(this);
 
         // Commands
         new LoreCommand(this);

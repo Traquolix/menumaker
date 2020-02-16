@@ -22,6 +22,7 @@ commands:
     usage: /linkto <NameOfTheMenu>
     description: Link to another menu when clicked.
 
+# Support Essentials Formatting : https://wiki.ess3.net/mc/
   makemenu:
     usage: /makemenu. /makemenu construct <newName> to confirm
     description: Fill your menu as you please.

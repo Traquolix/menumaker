@@ -2,9 +2,11 @@ package fr.traquolix.menumaker.usagePluginLoad;
 
 import fr.traquolix.menumaker.Main;
 import fr.traquolix.menumaker.creation.GUIBuilder;
+import org.bukkit.Bukkit;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-import java.io.File;
 import java.util.HashMap;
 
 public class DefinitiveGUI {
@@ -18,11 +20,25 @@ public class DefinitiveGUI {
      */
     public DefinitiveGUI() {
         bddFinal.put(ID, GUIBuilder.getTempoHash().get(0));
+        refreshInv();
         ID++;
     }
 
+    /**
+     * Refresh the Display name AND the owner of each GUI when going from Temporary HashMap to DefinitiveHashMap
+     */
+    private void refreshInv() {
+        for (int i = 0; i < DefinitiveGUI.getSize(); i++) {
+            ItemStack[] legacy = DefinitiveGUI.getDefinitiveHash().get(i).getContent();
+            InventoryHolder legacyHolder = DefinitiveGUI.getDefinitiveHash().get(i).getOwner();
+            GUIBuilder.InventoryBuilder(bddFinal.get(i));
+            bddFinal.get(i).setOwner(legacyHolder);
+            bddFinal.get(i).getInv().setContents(legacy);
+        }
+    }
+
     public static void initPluginDefinitiveGUI(Main plugin) {
-            DefinitiveGUI.plugin = plugin;
+        DefinitiveGUI.plugin = plugin;
     }
 /*
     public static void setConfig(){
@@ -42,13 +58,15 @@ public class DefinitiveGUI {
     }
 
  */
+
     /**
      * Ask if a menu already exist or not in the definitive HashMap
+     *
      * @param name String. Has to be exactly the one you putted to create the menu. (Essentials formatting included).
      * @return true if found, false if not.
      */
     public static boolean isDefinitive(String name) {
-        for(int i = 0; i < bddFinal.size(); i++) {
+        for (int i = 0; i < bddFinal.size(); i++) {
             if (bddFinal.get(i).getName().equals(name)) {
                 return true;
             }
@@ -57,7 +75,17 @@ public class DefinitiveGUI {
     }
 
     /**
+     * Check if a GUI is contained in the Defintive HashMap.
+     * @param ID is the ID OF THE DEFINITIVE HASH MAP YOU HAVE TO CHECK
+     * @return true if found, false if not.
+     */
+    public static boolean isDefinitive(int ID) {
+        return bddFinal.containsKey(ID);
+    }
+
+    /**
      * Count how many menus you built
+     *
      * @return the number
      */
     public static int getSize() {
@@ -66,6 +94,7 @@ public class DefinitiveGUI {
 
     /**
      * Get the name via ID. (Creation date, pretty much)
+     *
      * @param i id of the GUI you want to get
      * @return the name of the GUI
      */
@@ -81,4 +110,26 @@ public class DefinitiveGUI {
         return bddFinal;
     }
 
+    /**
+     * Return inventory for Defintiive content
+     * @param name research if the inventory exists in Definitive HashMap
+     * @return Inventory if found, null if not.
+     */
+    public static Inventory getInv(String name) {
+        for (int i = 0; i < bddFinal.size(); i++) {
+            if (bddFinal.get(i).getName().equals(name)) {
+                return bddFinal.get(i).getInv();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Get the inventory of a GUI in Definitive HashMap
+     * @param ID Warning : It's the ID of the Definitive HashMap you have to put. Do not work if you put an ID above the size of the Definitive HashMap. Get DefitiveGUI.getsize()-1 to check or DefinitiveGUI.isDefinitive(ID) .
+     * @return Inventory of the GUI stored in the Definitive HashMap at this ID.
+     */
+    public static Inventory getInv(int ID) {
+        return bddFinal.get(ID).getInv();
+    }
 }

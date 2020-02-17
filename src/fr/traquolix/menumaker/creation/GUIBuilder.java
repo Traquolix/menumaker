@@ -64,7 +64,7 @@ public class GUIBuilder implements Listener {
      * @return Inventory created
      */
 
-    private static Inventory InventoryBuilder(GUIBuilder gui) {
+    public static Inventory InventoryBuilder(GUIBuilder gui) {
         gui.inv = Bukkit.createInventory(gui.getOwner(), gui.getSize().size, Utils.chat(gui.getName()));
         return Bukkit.createInventory(gui.getOwner(), gui.getSize().size, Utils.chat(gui.getName()));
     }
@@ -91,6 +91,15 @@ public class GUIBuilder implements Listener {
 
     public ItemStack[] getContent() {
         return this.getInv().getContents();
+    }
+
+    /**
+     * Set the name of the GUI
+     * @param owner of the GUI
+     */
+
+    public void setOwner(InventoryHolder owner){
+        this.owner = owner;
     }
 
     /**

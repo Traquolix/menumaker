@@ -2,6 +2,7 @@ package fr.traquolix.menumaker.utils;
 
 import org.bukkit.ChatColor;
 
+
 public class Utils {
 
     /**

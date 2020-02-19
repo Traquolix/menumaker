@@ -1,8 +1,11 @@
 package fr.traquolix.menumaker.creation;
 
+import fr.traquolix.menumaker.usagePluginLoad.DefinitiveGUI;
 import fr.traquolix.menumaker.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.libs.it.unimi.dsi.fastutil.Hash;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -251,6 +254,15 @@ public class GUIBuilder implements Listener {
             inv.setItem(i,content[i]);
         }
         return inv;
+    }
+
+    public static void delete(int args) {
+        int slot = args;
+        HashMap<Integer, GUIBuilder> ending = DefinitiveGUI.getDefinitiveHash();
+        ending.remove(slot);
+        DefinitiveGUI.setDefinitiveHash(ending);
+
+        DefinitiveGUI.reBlock(slot);
     }
 
 }

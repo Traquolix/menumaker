@@ -28,6 +28,7 @@ public class DefinitiveGUI {
      * Refresh the Display name AND the owner of each GUI when going from Temporary HashMap to DefinitiveHashMap
      */
     private void refreshInv() {
+        Bukkit.broadcastMessage(String.valueOf(DefinitiveGUI.getSize()));
         for (int i = 0; i < DefinitiveGUI.getSize(); i++) {
             ItemStack[] legacy = DefinitiveGUI.getDefinitiveHash().get(i).getContent();
             InventoryHolder legacyHolder = DefinitiveGUI.getDefinitiveHash().get(i).getOwner();
@@ -76,6 +77,7 @@ public class DefinitiveGUI {
 
     /**
      * Check if a GUI is contained in the Defintive HashMap.
+     *
      * @param ID is the ID OF THE DEFINITIVE HASH MAP YOU HAVE TO CHECK
      * @return true if found, false if not.
      */
@@ -104,14 +106,20 @@ public class DefinitiveGUI {
 
     /**
      * return the entire HashMap
+     *
      * @return the entire HashMap
      */
     public static HashMap<Integer, GUIBuilder> getDefinitiveHash() {
         return bddFinal;
     }
 
+    public static void setDefinitiveHash(HashMap<Integer, GUIBuilder> newBdd) {
+        bddFinal = newBdd;
+    }
+
     /**
      * Return inventory for Defintiive content
+     *
      * @param name research if the inventory exists in Definitive HashMap
      * @return Inventory if found, null if not.
      */
@@ -126,10 +134,24 @@ public class DefinitiveGUI {
 
     /**
      * Get the inventory of a GUI in Definitive HashMap
+     *
      * @param ID Warning : It's the ID of the Definitive HashMap you have to put. Do not work if you put an ID above the size of the Definitive HashMap. Get DefitiveGUI.getsize()-1 to check or DefinitiveGUI.isDefinitive(ID) .
      * @return Inventory of the GUI stored in the Definitive HashMap at this ID.
      */
     public static Inventory getInv(int ID) {
         return bddFinal.get(ID).getInv();
+    }
+
+    public static void reBlock(int start) {
+        Bukkit.broadcastMessage(String.valueOf(bddFinal.size()));
+        for (int i = start; i < bddFinal.size(); i++) {
+            if (!(bddFinal.containsKey(i))) {
+                if (bddFinal.containsKey(i+1)) {
+                    bddFinal.put(i, bddFinal.get(i+1));
+                    bddFinal.remove(i+1);
+                    ID--;
+                }
+            }
+        }
     }
 }

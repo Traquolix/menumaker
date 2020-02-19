@@ -18,7 +18,7 @@ public class Main extends JavaPlugin {
         new LoreCommand(this);
         new DisplayNameCommand(this);
         new MakeMenuCommand(this);
-        new consultantCommand(this);
+        new ConsultantCommand(this);
 
         // Listeners
 

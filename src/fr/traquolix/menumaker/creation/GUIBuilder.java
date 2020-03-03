@@ -68,7 +68,7 @@ public class GUIBuilder implements Listener {
      * @return Inventory created
      */
 
-    public static Inventory InventoryBuilder(GUIBuilder gui) {
+    public static Inventory inventoryBuilder(GUIBuilder gui) {
         gui.inv = Bukkit.createInventory(gui.getOwner(), gui.getSize().size, Utils.chat(gui.getName()));
         return Bukkit.createInventory(gui.getOwner(), gui.getSize().size, Utils.chat(gui.getName()));
     }
@@ -190,7 +190,7 @@ public class GUIBuilder implements Listener {
      */
     public void resize(InventorySize size) {
         this.size = size;
-        this.inv = InventoryBuilder(this);
+        this.inv = inventoryBuilder(this);
     }
 
     /**

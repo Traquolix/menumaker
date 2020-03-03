@@ -3,6 +3,7 @@ package fr.traquolix.menumaker.commands;
 import fr.traquolix.menumaker.Main;
 import fr.traquolix.menumaker.creation.InventorySize;
 import fr.traquolix.menumaker.usagePluginLoad.DefinitiveGUI;
+import fr.traquolix.menumaker.utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,7 +25,7 @@ public class MakeMenuCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage("You cannot execute this command. Only players may execute this command.");
+            sender.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou cannot execute this command. Only players may execute this command."));
             return true;
         }
 
@@ -35,7 +36,7 @@ public class MakeMenuCommand implements CommandExecutor {
         if (args.length >= 2) {
             if (args[0].equalsIgnoreCase("build")) {
                 if (args[1] == null) {
-                    player.sendMessage("Missing arguments");
+                    player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cMissing arguments"));
                     return true;
                 } else { // Make the name of the GUI
                     StringBuilder sb = new StringBuilder();
@@ -43,16 +44,16 @@ public class MakeMenuCommand implements CommandExecutor {
                         sb.append(args[i]);
                         sb.append(" ");
                     }
-                    sb.deleteCharAt(sb.length()-1); // Delete the last space
+                    sb.deleteCharAt(sb.length() - 1); // Delete the last space
                     String menuName = sb.toString();
                     if (!(GUIBuilder.alreadyCreated("MakeMenu Creator"))) {
-                        player.sendMessage("You have to create a menu first via /makemenu");
+                        player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou have to create a menu first via /makemenu"));
                         return true;
                     } else if (!(DefinitiveGUI.isDefinitive(menuName))) {
                         int id = GUIBuilder.getID("MakeMenu Creator");
                         GUIBuilder.getGUI(id).setName(menuName);
                     } else {
-                        player.sendMessage("Menu already existing.");
+                        player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cThis Menu already exist"));
                         return true;
                     }
 
@@ -62,8 +63,21 @@ public class MakeMenuCommand implements CommandExecutor {
                 GUIBuilder.reset();
                 iterator++;
 
+            } else if (args[0].equalsIgnoreCase("clickEvent")){
+                if (args[1] == null) {
+                    player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cMissing arguments"));
+                    return true;
+                } else if(!(args[1].equalsIgnoreCase("true")) && (!(args[1].equalsIgnoreCase("false")))) {
+                    player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cUnknown arguments. You can only set this value to true or false"));
+                    return true;
+                } else if (!(GUIBuilder.alreadyCreated(0))) {
+                    player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou do not have created any menus"));
+                    return true;
+                } else {
+                    GUIBuilder.getGUI(0).setClickable(args[1]);
+                }
             } else {
-                player.sendMessage("Unknown function");
+                player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cUnknown function"));
                 return true;
             }
         } else if (args.length == 0) { // Create a 3 lines inventory makemenu by default
@@ -119,7 +133,7 @@ public class MakeMenuCommand implements CommandExecutor {
                         GUIBuilder.getGUI(0).saveInv(GUIBuilder.getInvViaID(0).getContents());
                         return true;
                     default:
-                        player.sendMessage("Plugin error");
+                        player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cPlugin error"));
                         return false;
                 }
             } else { // Make a new inventory of the size asked if the makemenu default hasn't been created
@@ -161,15 +175,15 @@ public class MakeMenuCommand implements CommandExecutor {
                         GUIBuilder.getGUI(0).saveInv(GUIBuilder.getInvViaID(0).getContents());
                         return true;
                     default:
-                        player.sendMessage("Plugin error");
+                        player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cPlugin error"));
                         return false;
                 }
             }
         } else { // Will put other usage for commands of makemenu if I make new ones
             if (!(args[0].equalsIgnoreCase("build"))) {
-                player.sendMessage("Incorrect usage or impossible size");
+                player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cIncorrect usage or impossible size"));
             } else {
-                player.sendMessage("Missing arguments");
+                player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cMissing arguments"));
             }
         }
 

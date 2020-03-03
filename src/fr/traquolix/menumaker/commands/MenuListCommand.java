@@ -21,29 +21,27 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
-public class ConsultantCommand implements CommandExecutor {
+public class MenuListCommand implements CommandExecutor {
 
     private Main plugin;
 
-    public ConsultantCommand(Main plugin) {
+    public MenuListCommand(Main plugin) {
         this.plugin = plugin;
 
-        plugin.getCommand("consultant").setExecutor(this);
+        plugin.getCommand("menulist").setExecutor(this);
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd,  String s, String[] args) {
 
         if (!(sender instanceof Player)) {
-            sender.sendMessage("You cannot execute this command. Only players may execute this command.");
+            sender.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou cannot execute this command. Only players may execute this command."));
             return true;
         }
 
         Player player = (Player) sender;
-        GUIBuilder gui = new GUIBuilder("Consultant", InventorySize.SIX_LINES, player, -1);
+        GUIBuilder gui = new GUIBuilder("Menu List", InventorySize.SIX_LINES, player, -1); // ID -1
 
-        // Taper le nom d'un menu amène directement à la consultation du menu en question
-        // TODO
 
         ArrayList<ItemStack> total = new ArrayList<ItemStack>();
 
@@ -60,26 +58,27 @@ public class ConsultantCommand implements CommandExecutor {
                 player.openInventory(DefinitiveGUI.getInv(menuName));
                 return true;
             } else if (DefinitiveGUI.getSize() == 0){
-                player.sendMessage("You do not have created any menus.");
+                player.sendMessage(Utils.chat(Utils.chat("&a[&6Menu Maker&a] &r: &cYou do not have created any menus")));
                 return true;
             } else {
-                player.sendMessage("Menu name not found / not matching. Opening Consultant..");
+                player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cMenu name not found / not matching"));
+                player.sendMessage(Utils.chat(Utils.chat("&a[&6Menu Maker&a] &r: &cOpening Menu List..")));
             }
         }
 
         // Confirm Inventory
-        GUIBuilder confirm = new GUIBuilder("Delete ?", InventorySize.THREE_LINES, player, -2);
+        GUIBuilder confirm = new GUIBuilder("Delete ?", InventorySize.THREE_LINES, player, -2); // ID -2
         ItemStack[] aba = new ItemStack[InventorySize.THREE_LINES.size];
-        aba[11] = GUIBuilder.createItem(Material.RED_STAINED_GLASS, 1, Utils.chat("&c&lCancel"));
-        aba[15] = GUIBuilder.createItem(Material.GREEN_STAINED_GLASS, 1, Utils.chat("&a&lConfirm"));
+        aba[15] = GUIBuilder.createItem(Material.RED_STAINED_GLASS, 1, Utils.chat("&c&lCancel"));
+        aba[11] = GUIBuilder.createItem(Material.GREEN_STAINED_GLASS, 1, Utils.chat("&a&lConfirm"));
         confirm.getInv().setContents(aba);
 
         // Listener
-        new consultantListener(this.plugin, gui, confirm);
+        new MenuListListener(this.plugin, gui, confirm);
 
 
         if (DefinitiveGUI.getSize() == 0) {
-            player.sendMessage("You do not have created any menus.");
+            player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou do not have created any menus"));
             return true;
         } else {
             for (int i = 0; i < DefinitiveGUI.getSize(); i++) {
@@ -96,15 +95,15 @@ public class ConsultantCommand implements CommandExecutor {
 
 }
 
-class consultantListener implements Listener {
+class MenuListListener implements Listener {
 
     private Main plugin;
     private GUIBuilder gui;
-    private  GUIBuilder confirm;
+    private GUIBuilder confirm;
     private int deletionSlot;
 
 
-    consultantListener(Main plugin, GUIBuilder gui, GUIBuilder confirm) {
+    MenuListListener(Main plugin, GUIBuilder gui, GUIBuilder confirm) {
         this.plugin = plugin;
         this.gui = gui;
         this.confirm = confirm;
@@ -123,13 +122,9 @@ class consultantListener implements Listener {
         if (DefinitiveGUI.isDefinitive(e.getSlot())) {
             if (e.getClickedInventory().equals(this.gui.getInv())) {
                 if (e.getClick().isRightClick()) {
-
                     this.deletionSlot = e.getSlot();
-
-
                     e.setCancelled(true);
                     e.getWhoClicked().closeInventory();
-
                     e.getWhoClicked().openInventory(confirm.getInv());
 
                 }
@@ -141,20 +136,20 @@ class consultantListener implements Listener {
             }
         }
 
-        if (e.getSlot() == 11) {
+        if (e.getSlot() == 15) {
             if (e.getClickedInventory().equals(this.confirm.getInv())) {
                 e.setCancelled(true);
-                e.getWhoClicked().sendMessage("Action Cancelled");
+                e.getWhoClicked().sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cAction Cancelled"));
                 e.getWhoClicked().closeInventory();
             }
         }
 
 
-        if (e.getSlot() == 15) {
+        if (e.getSlot() == 11) {
             if (e.getClickedInventory().equals(this.confirm.getInv())) {
                 e.setCancelled(true);
                 GUIBuilder.delete(deletionSlot);
-                e.getWhoClicked().sendMessage("Deletion confirmed");
+                e.getWhoClicked().sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cDeletion confirmed"));
                 e.getWhoClicked().closeInventory();
             }
         }

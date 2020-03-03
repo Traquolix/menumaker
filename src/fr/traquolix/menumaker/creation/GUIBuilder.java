@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 public class GUIBuilder implements Listener {
 
+    private boolean clickable;
     private Inventory inv;
     private InventoryHolder owner;
     private InventorySize size;
@@ -258,11 +259,20 @@ public class GUIBuilder implements Listener {
 
     public static void delete(int args) {
         int slot = args;
-        HashMap<Integer, GUIBuilder> ending = DefinitiveGUI.getDefinitiveHash();
-        ending.remove(slot);
-        DefinitiveGUI.setDefinitiveHash(ending);
-
+        DefinitiveGUI.getDefinitiveHash().remove(slot);
         DefinitiveGUI.reBlock(slot);
+    }
+
+    public void setClickable(boolean value) {
+        this.clickable = value;
+    }
+
+    public void setClickable(String value) {
+        if (value.equalsIgnoreCase("true")) {
+            this.clickable = true;
+        } else if (value.equalsIgnoreCase("false")) {
+            this.clickable = false;
+        }
     }
 
 }

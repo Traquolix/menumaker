@@ -2,13 +2,14 @@ package fr.traquolix.menumaker;
 
 import fr.traquolix.menumaker.commands.*;
 import fr.traquolix.menumaker.usagePluginLoad.DefinitiveGUI;
+import fr.traquolix.menumaker.utils.Utils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        System.out.println("MenuMaker started.");
+        System.out.println("&a[&6Menu Maker&a] &r: &cMenuMaker started.");
         saveDefaultConfig();
 
         // Commodities
@@ -18,7 +19,8 @@ public class Main extends JavaPlugin {
         new LoreCommand(this);
         new DisplayNameCommand(this);
         new MakeMenuCommand(this);
-        new ConsultantCommand(this);
+        new MenuListCommand(this);
+        new ItemEditCommand(this);
 
         // Listeners
 
@@ -28,6 +30,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("MenuMaker stopped.");
+        System.out.println("[Menu Maker] : MenuMaker stopped.");
     }
 }

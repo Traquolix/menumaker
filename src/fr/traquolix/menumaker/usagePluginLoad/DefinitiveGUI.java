@@ -20,15 +20,15 @@ public class DefinitiveGUI {
      */
     public DefinitiveGUI() {
         bddFinal.put(ID, GUIBuilder.getTempoHash().get(0));
-        refreshInv();
         ID++;
+        refreshInv();
+
     }
 
     /**
      * Refresh the Display name AND the owner of each GUI when going from Temporary HashMap to DefinitiveHashMap
      */
     private void refreshInv() {
-        Bukkit.broadcastMessage(String.valueOf(DefinitiveGUI.getSize()));
         for (int i = 0; i < DefinitiveGUI.getSize(); i++) {
             ItemStack[] legacy = DefinitiveGUI.getDefinitiveHash().get(i).getContent();
             InventoryHolder legacyHolder = DefinitiveGUI.getDefinitiveHash().get(i).getOwner();
@@ -143,15 +143,20 @@ public class DefinitiveGUI {
     }
 
     public static void reBlock(int start) {
-        Bukkit.broadcastMessage(String.valueOf(bddFinal.size()));
         for (int i = start; i < bddFinal.size(); i++) {
             if (!(bddFinal.containsKey(i))) {
                 if (bddFinal.containsKey(i+1)) {
                     bddFinal.put(i, bddFinal.get(i+1));
                     bddFinal.remove(i+1);
                     ID--;
+                } else {
+                    ID--;
                 }
             }
+
+        }
+        if (ID > 0 && bddFinal.size() == 0) {
+            ID--;
         }
     }
 }

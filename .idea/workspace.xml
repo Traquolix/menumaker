@@ -7,12 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf7afdd5-f0ab-4f31-8839-ff8d4953e611" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/ItemEditCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MenuMaker/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MenuMaker/plugin.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/consultantCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/ConsultantCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/ConsultantCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/MenuListCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/DisplayNameCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/DisplayNameCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/LoreCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/LoreCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/MakeMenuCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/commands/MakeMenuCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/creation/GUIBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/creation/GUIBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/usagePluginLoad/DefinitiveGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/usagePluginLoad/DefinitiveGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/fr/traquolix/menumaker/utils/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fr/traquolix/menumaker/utils/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugin.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +78,10 @@
       <workItem from="1581950243995" duration="6647000" />
       <workItem from="1581970302602" duration="3137000" />
       <workItem from="1582018354210" duration="11373000" />
-      <workItem from="1582100950555" duration="4926000" />
+      <workItem from="1582100950555" duration="4981000" />
+      <workItem from="1582224030074" duration="1956000" />
+      <workItem from="1582585326481" duration="7915000" />
+      <workItem from="1582633870628" duration="2261000" />
     </task>
     <servers />
   </component>

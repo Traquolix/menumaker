@@ -27,7 +27,7 @@ public class LoreCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] args) {
 
         if(!(sender instanceof Player)) {
-            sender.sendMessage("You cannot execute this command. Only players may execute this command");
+            sender.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou cannot execute this command. Only players may execute this command"));
             return true;
         }
         Player player = (Player) sender;
@@ -38,7 +38,7 @@ public class LoreCommand implements CommandExecutor {
 
         // Check if hold item is null
         if (item.getAmount() == 0) {
-            player.sendMessage("You cannot put lore to nothing");
+            player.sendMessage(Utils.chat("&a[&6Menu Maker&a] &r: &cYou cannot put lore to nothing"));
             return true;
         }
 

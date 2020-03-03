@@ -25,8 +25,15 @@ commands:
 # Support Essentials Formatting : https://wiki.ess3.net/mc/
   makemenu:
     usage: /makemenu. /makemenu construct <newName> to confirm
+    aliases: [mm]
     description: Fill your menu as you please.
 
-  consultant:
-    usage: /consultant
+  menulist:
+    usage: /menulist
+    aliases: [ml]
     description: Get list of all builded menus.
+
+  itemedit:
+    usage: /itemedit
+    aliases: [ie]
+    description: Let the player modify an item to use it in Menus interfaces
